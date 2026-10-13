@@ -259,31 +259,10 @@ curl "http://localhost:8080/api/ratings/top?page=0&size=5"
 
 ---
 
-## ⚠️ Known Limitations
-
-These are things you may want to fix or build next:
-
-- **No rental endpoints yet.** `Movie` has an `isRented` flag, but there are no endpoints to rent or return a movie.
-- **Adding a rating needs a movie.** `POST /api/ratings` sets the customer but not the movie, and `Rating.movie` is `@JsonIgnore` and not nullable, so new ratings fail to save. Adding a `movieId` request parameter would fix this.
-- **Updating a rating** saves the request body instead of the existing record, so it can create a new row rather than update the old one.
-- **Missing movie returns `200`.** `GET /api/movies/{id}` returns an empty body when the ID doesn't exist; `MovieNotFoundException` and its `404` handler are defined but never thrown.
-- **Validation isn't triggered.** Controllers don't use `@Valid` on request bodies, so the entity constraints are only checked by JPA at save time.
-- **Release year cap** is hard‑coded to 2025.
-- **Data is reset on each start** because of `ddl-auto=create`.
 
 ---
 
-## 🧭 Possible Improvements
-
-- Rent / return endpoints and a `Rental` entity with dates and fees
-- DTOs instead of exposing entities directly
-- Named JSON objects instead of `Object[]` arrays for analytics responses
-- OpenAPI / Swagger UI documentation
-- Unit and integration tests for services and controllers
-- Switch to MySQL or PostgreSQL for production
 
 ---
 
-## 👤 Author
 
-**Chamika Nimnajith** – [GitHub](https://github.com/chamikaNimnajith)
